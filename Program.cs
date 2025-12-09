@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using LibraryManager;
@@ -40,8 +40,10 @@ class Program()
 
 
 
-            switch (choice)
-            {
+            switch (choice)                           //AI was asked if their was an alternative to using multiple if-else statements for menu selection in C#. AI suggested using a switch statement for better readability and maintainability.
+            {                                         //functionally speaking, this performs the same task as using multiple if statements for selecting menu options.
+                                                      //I understood the suggestion and implemented it here for better code clarity.
+                                                      //case refers to what number needs to be selected for that menu option and if its pressed, it runs the corresponding method and then breaks from the rest of the options and continues the program.
                 case "1":
                     AddLibraryItem();
                     break;
@@ -109,7 +111,8 @@ class Program()
 
 
     static void AddLibraryItem()
-    {
+    {                                                                          //AI was not used for anything contained with this method as I was familiar with how to implement user input functionality in C#.
+                                                                               //error handling was implemented using knowledge of while loops and TryParse method.
         Console.Clear();
         Console.WriteLine("---Please add a Library Item---\n");
 
@@ -213,7 +216,12 @@ class Program()
         }
 
 
-        bool alreadyCheckedOut = checkoutList.Any(cm => cm.Book.id == Selecteditem.id);
+        bool alreadyCheckedOut = checkoutList.Any(cm => cm.Book.id == Selecteditem.id);                //AI suggested using the Any() method when asked "What is the most efficient way to check if an item with a specific property exists in a list in C#?"
+                                                                                                       //the Any() method is more efficient than a traditional loop because it stops searching as soon as it finds a match, rather than continuing to check every item in the list.
+                                                                   
+                                                                                                        //.Any is just saying to look through every item until any item with a matching book id is found. 
+                                                                                                       //I understand what this is doing in the context of the program
+                                                                                                       //here we are checking if any checkout manager in the checkout list has a book id that matches the selected item's id.
 
         if (alreadyCheckedOut)
         {
@@ -244,7 +252,7 @@ class Program()
     static void ReturnItem()
     {
         Console.Clear();
-        Console.WriteLine("--- Return an Item---");
+        Console.WriteLine("--- Return an Item---");                             
 
         if (checkoutList.Count == 0)
         {
@@ -269,8 +277,8 @@ class Program()
             
         }
 
-        CheckoutManager removecheckoutItem = checkoutList.Find(cm=> cm.Book.id == id);
-
+        CheckoutManager removecheckoutItem = checkoutList.Find(cm=> cm.Book.id == id);     //Prompted by AI to use lambda function when asked "What is the most optimal way to find an item in a list based on a property of an object in C#?"
+                                                                                           //Lambda function used is simply saying "Given the checkout manager cm, find the book id that matches the inputted id. This is more efficent than a traditional loop."
         if (removecheckoutItem == null)
         {
             Console.WriteLine("No Items Checked Out With That ID");
@@ -325,7 +333,8 @@ class Program()
 
 
     static void SaveCheckoutListToFile()
-    {
+    {                                                                         //AI suggested adding this method when asked "What is the best way to save a list of objects to a file in C#?"
+                                                                              //was unfamiliar with how to implement file saving functionality in C# which is why AI was referenced for this method.
         Console.Clear();
         Console.WriteLine("--- Save Checkout List To A File ---\n");
 
@@ -334,7 +343,7 @@ class Program()
             Console.WriteLine("No Items In List To Checkout. Please Add At Least One Item And Try Again.");
             Console.ReadLine();
             return; 
-        }
+        }                                                                                                         
 
         string saveFileName = "Library_Checkout.txt";
 
@@ -396,7 +405,11 @@ class Program()
 
         foreach(string line in lines)
         {
-            if(string.IsNullOrWhiteSpace(line))
+            if(string.IsNullOrWhiteSpace(line))                        //AI used to suggest adding this check when asked "What is the best way to handle empty lines when reading from a file in C#?"
+                                                                        //the purpose of continue here is that if their is white space, continue is telling the program "Hey, skip this line and move on to the next one."
+                                                                       //when continue is ran in the foreach loop, it skips the rest of the code in the loop for that iteration and moves to the next iteration.
+                                                                       //this gets repeated until all lines have been processed.
+                                                                       //the purpose of this is both for formatting purposes and to avoid errors when parsing data from the file. as we do not want to try and run parsing logic on an empty line.
                 continue;
 
             string[] parts = line.Split('|');
