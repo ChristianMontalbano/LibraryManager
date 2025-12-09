@@ -13,8 +13,6 @@ namespace LibraryManager
         public string type { get; set; }
         public double dailyLateFee { get; set; }
 
-
-
         public LibraryItem(int id, string title, string type, double dailyLateFee)
         {
             this.id = id;
@@ -24,15 +22,16 @@ namespace LibraryManager
 
         }
 
-        
- 
-
-        public void PrintLibraryItem()
+        public string PrintLibraryItem()
         {
-            Console.WriteLine($"ID: {id} ");
-            Console.WriteLine($"Title: {title} ");
-            Console.WriteLine($"Type: {type} ");
-            Console.WriteLine($"Daily Late Fee: {dailyLateFee:F2}\n ");
+            string somestring = "";
+            
+            somestring += $"ID: {id} \n";
+            sonestring += $"Title: {title} \n";
+            somestring += $"Type: {type} \n";
+            somestring += $"Daily Late Fee: {dailyLateFee:F2}\n ";
+
+            return somestring;
         }
         
        
